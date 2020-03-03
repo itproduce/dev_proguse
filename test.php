@@ -2,4 +2,6 @@
 
 echo "HELO";
 
+echo "string";
+
 ?>
