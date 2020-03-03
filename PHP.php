@@ -13,3 +13,19 @@
 	$this->AddDeleteAction($field['ID'], $field['DELETE_LINK'], CIBlock::GetArrayByID($field["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
 
 ?>
+<?
+//	вывод цены отдельно 
+$arPrice = CCatalogProduct::GetOptimalPrice($productID, $quantity, $USER->GetUserGroupArray(), $renewal);
+		if (!$arPrice || count($arPrice) <= 0)
+		{
+		    if ($nearestQuantity = CCatalogProduct::GetNearestQuantityPrice($productID, $quantity, $USER->GetUserGroupArray()))
+		    {
+		        $quantity = $nearestQuantity;
+		        $arPrice = CCatalogProduct::GetOptimalPrice($productID, $quantity, $USER->GetUserGroupArray(), $renewal);
+		    }
+		}
+		echo "<pre>";
+		print_r($arPrice);
+		echo "</pre>";
+
+?>
